@@ -5,9 +5,21 @@
 #include "queue.h"
 
 /* Create an empty queue */
-struct list_head *q_new()
+struct list_head *q_new(void)
 {
-    return NULL;
+    /*
+     * Create an empty queue.
+     * Return: pointer to struct list_head, or NULL if allocation fails.
+     * Caller is responsible for freeing the memory with q_free().
+     */
+
+    struct list_head *head = malloc(sizeof(*head));
+    if (!head)
+        return NULL;
+
+    INIT_LIST_HEAD(head);
+
+    return head;
 }
 
 /* Free all storage used by queue */
